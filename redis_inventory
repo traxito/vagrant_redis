@@ -15,5 +15,5 @@ redisslave2
 
 [all:vars]
 host_key_checking=false
-ansible_ssh_user=username
-ansible_ssh_pass=ssh_pass
+#ansible_ssh_user=username
+#ansible_ssh_pass=ssh_pass
