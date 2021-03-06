@@ -1,0 +1,16 @@
+[redis]
+192.168.33.10 ansible_connection=local
+192.168.33.11
+192.168.33.12
+
+[r1]
+192.168.33.10 ansible_connection=local
+
+[r2]
+192.168.33.11
+
+[r3]
+192.168.33.12
+
+[redis:vars]
+host_key_checking=false

@@ -1,0 +1,94 @@
+---
+- name: Redis Cluster Install
+  hosts: redis
+  become: yes
+  become_user: root
+  gather_facts: no
+  tasks:
+
+    - name: Download redis.rpm file
+      get_url:
+        url: https://rpmfind.net/linux/remi/enterprise/5/test/x86_64/redis-4.0.0-0.2.RC2.el5.remi.x86_64.rpm
+        dest: /root
+        mode: '0644'
+
+    - name: install redis
+      yum:
+        name: /root/redis-4.0.0-0.2.RC2.el5.remi.x86_64.rpm
+        state: present
+
+    - name: stop firewall service
+      service:
+        name: firewalld
+        state: stopped
+        enabled: no
+
+    - name: Swappoff disable
+      command: swapoff -a
+      ignore_errors: yes
+
+    - name: Disable SELinux
+      selinux:
+        state: disabled
+
+    - name: Redis.conf backup 
+      command: mv /etc/redis.conf /etc/redis_backup.conf
+
+    - name: Copy config file
+      copy:
+        src: redis.conf
+        dest: /etc/
+        mode: '0755'
+
+- name: Redis Cluster Install
+  hosts: 192.168.33.10
+  become: yes
+  become_user: root
+  gather_facts: no
+  tasks:  
+     - name: Insert configuration bind section
+       lineinfile:
+        path: /etc/redis.conf
+        regexp: 'bind 127.0.0.1'
+        line: 'bind master1'
+
+
+- name: Redis Cluster Install
+  hosts: 192.168.33.11
+  become: yes
+  become_user: root
+  gather_facts: no
+  tasks:  
+     - name: Insert configuration bind section
+       lineinfile:
+        path: /etc/redis.conf
+        regexp: 'bind 127.0.0.1'
+        line: 'bind slave2'
+
+- name: Redis Cluster Install
+  hosts: 192.168.33.12
+  become: yes
+  become_user: root
+  gather_facts: no
+  tasks:  
+     - name: Insert configuration bind section
+       lineinfile:
+        path: /etc/redis.conf
+        regexp: 'bind 127.0.0.1'
+        line: 'bind slave3'
+
+- name: Start redis.service
+  hosts: redis
+  become: yes
+  become_user: root
+  gather_facts: no
+  tasks:
+
+    - name: Restart for all server
+      reboot:
+
+    - name: Start redis service
+      service:
+        name: redis
+        state: started
+...
