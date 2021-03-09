@@ -41,7 +41,8 @@
         mode: '0755'
 
 - name: Redis Cluster Install
-  hosts: 192.168.33.10
+  #hosts: 192.168.33.10
+  hosts: redismaster1
   become: yes
   become_user: root
   gather_facts: no
@@ -54,7 +55,8 @@
 
 
 - name: Redis Cluster Install
-  hosts: 192.168.33.11
+  #hosts: 192.168.33.11
+  hosts: redisslave1
   become: yes
   become_user: root
   gather_facts: no
@@ -66,7 +68,8 @@
         line: 'bind slave2'
 
 - name: Redis Cluster Install
-  hosts: 192.168.33.12
+  #hosts: 192.168.33.12
+  hosts: redisslave2
   become: yes
   become_user: root
   gather_facts: no
