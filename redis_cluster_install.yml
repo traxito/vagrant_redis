@@ -42,7 +42,7 @@
 
 - name: Redis Cluster Install
   #hosts: 192.168.33.10
-  hosts: redismaster1
+  hosts: r1
   become: yes
   become_user: root
   gather_facts: no
@@ -56,7 +56,7 @@
 
 - name: Redis Cluster Install
   #hosts: 192.168.33.11
-  hosts: redisslave1
+  hosts: r2
   become: yes
   become_user: root
   gather_facts: no
@@ -69,7 +69,7 @@
 
 - name: Redis Cluster Install
   #hosts: 192.168.33.12
-  hosts: redisslave2
+  hosts: r3
   become: yes
   become_user: root
   gather_facts: no
