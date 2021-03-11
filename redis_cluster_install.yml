@@ -39,6 +39,11 @@
         src: redis.conf
         dest: /etc/
         mode: '0755'
+        
+    - name: Install Ruby
+      yum:
+        name: Ruby
+        state: present
 
 - name: Redis Cluster Install
   #hosts: 192.168.33.10
