@@ -1,17 +1,17 @@
 [redis]
 #change your ip's
-172.17.13.85 ansible_hostname=redismaster1 ansible_connection=local package=ftp
-172.17.13.90 ansible_hostname=redisslave1
-172.17.13.91 ansible_hostname=redisslave2
+192.168.33.10 ansible_hostname=redismaster1 ansible_connection=local package=ftp
+192.168.33.11 ansible_hostname=redisslave1
+192.168.33.12 ansible_hostname=redisslave2
 
 [r1]
-172.17.13.85 ansible_hostname=redismaster1 ansible_connection=local package=ftp
+192.168.33.10 ansible_hostname=redismaster1 ansible_connection=local package=ftp
 
 [r2]
-172.17.13.90 ansible_hostname=redisslave1
+192.168.33.11 ansible_hostname=redisslave1
 
 [r3]
-172.17.13.91 ansible_hostname=redisslave2
+192.168.33.12 ansible_hostname=redisslave2
 
 [all:vars]
 host_key_checking=false
