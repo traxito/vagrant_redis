@@ -42,7 +42,7 @@
         
     - name: Install Ruby
       yum:
-        name: Ruby
+        name: ruby
         state: present
 
 - name: Redis Cluster Install
